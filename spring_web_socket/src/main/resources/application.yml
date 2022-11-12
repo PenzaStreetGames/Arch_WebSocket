@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: "jdbc:postgresql://postgres:5432/arch_spring"
+    username: "postgres"
+    password: "123456"
+  jpa:
+    properties:
+      hibernate:
+        dialect: "org.hibernate.dialect.PostgreSQLDialect"

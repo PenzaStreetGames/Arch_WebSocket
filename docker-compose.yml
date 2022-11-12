@@ -1,0 +1,21 @@
+version: "3"
+services:
+  postgres:
+    environment:
+      - DB_NAME=arch_spring
+      - PGDATA=/var/lib/postgresql/data/arch_spring
+      - POSTGRES_PASSWORD=123456
+    image: 'postgres:12.3-alpine'
+    ports:
+      - '5431:5432'
+    restart: always
+    volumes:
+      - ./postgres:/docker-entrypoint-initdb.d:ro
+  spring_server:
+    build: ./spring_web_socket
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./spring_web_socket/src/main/resources:/app/src/main/resources
+    links:
+      - postgres
